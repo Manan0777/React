@@ -3,7 +3,7 @@ import {useState} from "react"; //useState is a HOOK that contains 2 info or an 
 import {NavBar, MoviesList} from './components';
 import axios from 'axios';
 
-const API_BASE_URL = "https://api.themoviedb.org/3/movie/550?";
+const API_BASE_URL = "https://www.omdbapi.com";
 // 866d3fc19510e7fbd2ab3d53cbd47aec
 
 function App() {
@@ -14,13 +14,13 @@ function App() {
 
   const search = async (e) => { //for searching in input
     // console.log(e);
-    if(e.key === "Enter"){
+    if(e.key === 13 || 1){
       console.log('Entered');
       setIsLoading(true);
-      let response = await axios.get( API_BASE_URL + "api_key=866d3fc19510e7fbd2ab3d53cbd47aec&language=en-US&query=" + inputValue);
+      let response = await axios.get( API_BASE_URL + "/?s=" + inputValue +"&apikey=aa660442");
       //set Data
       // console.log(response);
-      setMovies(response.data.Search); //Getting search
+      setMovies(response.data.Search); //Getting movies through search in api
       setIsLoading(false);
     }
   };
